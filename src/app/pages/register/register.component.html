@@ -1,1 +1,38 @@
-<p>register works!</p>
+<div class="parent">
+    <form>
+
+        <div class="formtitle">
+            <h4>REGISTER</h4>
+        </div>
+
+        <div>
+            <label for="email" class="flable">Email</label>
+            <input type="email" placeholder="eg abc@gmail.com" name="email" [(ngModel)]="emailV">
+        </div>
+
+       <div>
+        <label for="password" class="flable">Password</label>
+        <input type="password" name="password" [(ngModel)]="passwordV">
+       </div>
+
+       <div>
+        <label for="status" class="flable">EMP</label>
+        <select class="selected"  [(ngModel)]="statusV" name="status">
+            <option  disabled>Select Role</option>
+            <option *ngFor="let c of empArr" [ngValue]="c.id">{{c.role}}</option>
+        </select>
+
+       </div>
+
+       <div class="formtitle">
+        <h4>back to <a href="/">login</a></h4>
+       </div>
+
+        <div class="subbtn">
+            <button type="submit" class="subbtnc" (click)="registerFormValue()">SUBMIT</button>
+        </div>
+
+    </form>
+    
+
+</div>
