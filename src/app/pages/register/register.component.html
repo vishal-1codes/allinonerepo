@@ -1,5 +1,5 @@
 <div class="parent">
-    <form>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
 
         <div class="formtitle">
             <h4>REGISTER</h4>
@@ -7,17 +7,17 @@
 
         <div>
             <label for="email" class="flable">Email</label>
-            <input type="email" placeholder="eg abc@gmail.com" name="email" [(ngModel)]="emailV">
+            <input type="email" placeholder="eg abc@gmail.com" formControlName="emailv">
         </div>
 
        <div>
         <label for="password" class="flable">Password</label>
-        <input type="password" name="password" [(ngModel)]="passwordV">
+        <input type="password" formControlName="passv">
        </div>
 
        <div>
         <label for="status" class="flable">EMP</label>
-        <select class="selected"  [(ngModel)]="statusV" name="status">
+        <select class="selected"  formControlName="empv">
             <option  disabled>Select Role</option>
             <option *ngFor="let c of empArr" [ngValue]="c.id">{{c.role}}</option>
         </select>
@@ -29,7 +29,7 @@
        </div>
 
         <div class="subbtn">
-            <button type="submit" class="subbtnc" (click)="registerFormValue()">SUBMIT</button>
+            <button type="submit" class="subbtnc" [disabled]="!registerForm.valid">SUBMIT</button>
         </div>
 
     </form>
