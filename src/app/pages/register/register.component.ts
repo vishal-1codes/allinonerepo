@@ -14,6 +14,10 @@ export class RegisterComponent implements OnInit {
   getRegisterToken:any;
   getUserInfo:any=[];
 
+
+  //18 lets go to login page
+  newUserInfo:any;
+
   empArr = [
     { id: 1, role: "HR" },
     { id: 2, role: "Software Developer" },
@@ -32,29 +36,29 @@ export class RegisterComponent implements OnInit {
 
 
   onSubmit() {
-    console.warn(this.registerForm.value);
+    console.log("get data",this.registerForm.value);
     this.checkEmailPresentOrNot()
   }
 
   checkEmailPresentOrNot(){
     // console.log("checkEmailPresentOrNot call",this.registerForm.value.emailv);
     this.globalservice.checkEmail(this.registerForm.value.emailv).subscribe(res=>{
-      // console.log("check emil",res);
+      console.log("check emil",res);
       this.emailResArr=res
-      // console.log("get res and length",this.emailResArr,this.emailResArr.length);
+      console.log("get res and length",this.emailResArr,this.emailResArr.length);
       
       if(this.emailResArr.length==0){
-        // console.log("email is new");
+        console.log("email is new");
         this.createNewUser()
       }else{
-        // console.log("emil is old,show alert");
+        console.log("emil is old,show alert");
         alert("Email is existing, please register with new email")
       }
     })
   }
 
   createNewUser(){
-    console.log("create new login");
+    console.log("create new login",this.registerForm);
     const data1={
       "email":this.registerForm.value.emailv,
       "password":this.registerForm.value.passv,
@@ -63,25 +67,29 @@ export class RegisterComponent implements OnInit {
 
     this.globalservice.createNewUser(data1).subscribe(res=>{
       // console.log("get register token",res);
-      this.getRegisterToken=res;
-      console.log("register token inside getRegisterToken",this.getRegisterToken.token,typeof(this.getRegisterToken.token));
+      alert("congratulations,your id is created,check out login page, lets go..")
+      this.newUserInfo=res
+      console.log("register new user info",this.newUserInfo);
+      this.router.navigateByUrl('/login',{state:{newuser:this.newUserInfo}})
+      // this.getRegisterToken=res;
+      // console.log("register token inside getRegisterToken",this.getRegisterToken.token,typeof(this.getRegisterToken.token));
 
-      if(this.getRegisterToken!=undefined){
-        const data2={
-          "authentication":this.getRegisterToken.token
-        }
-        console.log("get data2",data2);
+      // if(this.getRegisterToken!=undefined){
+      //   const data2={
+      //     "authentication":this.getRegisterToken.token
+      //   }
+      //   console.log("get data2",data2);
         
-        this.globalservice.checkToken(data2).subscribe(res=>{
-          // console.log("get token res",res);
-          this.getUserInfo=res
-          console.log("get user info in",this.getUserInfo);
-          this.router.navigateByUrl('/home',{state:{token:this.getUserInfo}})
-        })
-      }else{
-        console.log("token not genrated");
+      //   this.globalservice.checkToken(data2).subscribe(res=>{
+      //     // console.log("get token res",res);
+      //     this.getUserInfo=res
+      //     console.log("get user info in",this.getUserInfo);
+      //     this.router.navigateByUrl('/home',{state:{token:this.getUserInfo}})
+      //   })
+      // }else{
+      //   console.log("token not genrated");
         
-      }
+      // }
      
     })
   }

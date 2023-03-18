@@ -23,5 +23,9 @@ export class GlobalService {
     return this.httpclient.post(this.base_path+"profile",data)
   }
 
+  checkLoginUser(data:any){
+    return this.httpclient.post(this.base_path+"auth",data)
+  }
+
 
 }

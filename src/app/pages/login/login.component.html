@@ -7,12 +7,12 @@
 
         <div>
             <label for="email" class="flable">Email</label>
-            <input type="email" placeholder="eg abc@gmail.com">
+            <input type="email" placeholder="eg abc@gmail.com" name="email" [(ngModel)]="registerUserEmail">
         </div>
 
        <div>
         <label for="password" class="flable">Password</label>
-        <input type="password" >
+        <input type="password" name="password" [(ngModel)]="registerUserPassword" >
        </div>
 
        <div class="formtitle">
@@ -20,7 +20,7 @@
        </div>
 
         <div class="subbtn">
-            <button type="submit" class="subbtnc">SUBMIT</button>
+            <button type="submit" class="subbtnc" (click)="loginSubmit()">SUBMIT</button>
         </div>
 
     </form>

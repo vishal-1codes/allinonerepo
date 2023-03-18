@@ -10,18 +10,18 @@ import { Location } from '@angular/common';
 export class HomeComponent implements OnInit {
 
   registerToken:any;
-  registerTokenInfo:any;
+  registerTokenInfo:any="User Not Found";
 
   constructor(private globalservice:GlobalService,private router:Router ,private location:Location) {
-    this.getActivatedToken()
+    this.getActivatedTokenUser()
   }
 
   ngOnInit(): void {
   }
 
-  getActivatedToken(){
+  getActivatedTokenUser(){
     this.registerToken=this.location.getState()
-    this.registerTokenInfo=this.registerToken.token.authdata.val.email
+    this.registerTokenInfo=this.registerToken.tokenuserdata.email
     console.log("get activate token",this.registerToken,this.registerTokenInfo);
     
   }
