@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
   registerUserPassword:any="";
 
   storeLoginToken:any;
-  storeLoginTokenT:any;
+  storeLoginTokenT:any='';
 
   getTokenUser:any;
   getTokenUserData:any
@@ -31,9 +31,16 @@ export class LoginComponent implements OnInit {
   getNewUserInfo(){
     this.registerUser=this.location.getState()
     console.log("get new register user data----",this.registerUser);
-    this.registerUserEmail=this.registerUser.newuser.email
-    this.registerUserPassword=this.registerUser.newuser.password
-    console.log("get new user emial and password----",this.registerUserEmail,this.registerUserPassword);
+
+    if(this.registerUser.newuser !=undefined || this.registerUser.newuser !=null){
+      this.registerUserEmail=this.registerUser.newuser.email
+      this.registerUserPassword=this.registerUser.newuser.password
+      console.log("get new user emial and password----",this.registerUserEmail,this.registerUserPassword);
+    }else{
+      console.log("user not register----");
+      
+    }
+   
     
   }
 
@@ -64,8 +71,16 @@ export class LoginComponent implements OnInit {
           console.log("get token response",res);
           this.getTokenUser=res
           this.getTokenUserData=this.getTokenUser.authdata.var2[0]
-          console.log("get getTokenUserData----",this.getTokenUserData);
-          this.router.navigateByUrl('/home',{state:{tokenuserdata:this.getTokenUserData}})
+
+          if(this.getTokenUserData !=undefined){
+            console.log("get getTokenUserData----",this.getTokenUserData);
+            this.router.navigateByUrl('/home',{state:{tokenuserdata:this.getTokenUserData}})
+          }else{
+            console.log("token not have any user data, user is new");
+            alert("Email Or Password incorrect, Register Now")
+            
+          }
+         
         })
       }else{
         console.log("token is not present----");

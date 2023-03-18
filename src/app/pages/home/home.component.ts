@@ -21,8 +21,14 @@ export class HomeComponent implements OnInit {
 
   getActivatedTokenUser(){
     this.registerToken=this.location.getState()
-    this.registerTokenInfo=this.registerToken.tokenuserdata.email
-    console.log("get activate token",this.registerToken,this.registerTokenInfo);
+    console.log("type of--",this.registerToken,typeof(this.registerToken));
+    if(this.registerToken.tokenuserdata!=undefined){
+      this.registerTokenInfo=this.registerToken.tokenuserdata.email
+      console.log("get activate token--",this.registerToken,this.registerTokenInfo);
+    }else{
+      alert("Not get user--")
+    }
+    
     
   }
 
