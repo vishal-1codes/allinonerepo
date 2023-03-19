@@ -38,6 +38,7 @@ export class AppComponent implements OnInit{
       this.checkTokenPorN()
     }else{
       console.log("local storage not present==");
+      this.router.navigateByUrl("/login")
     }
   }
 
@@ -60,6 +61,7 @@ export class AppComponent implements OnInit{
         // alert("Invalid Token, Token expire==")
         console.log("Invalid Token, Token expire==");
         localStorage.clear();
+        
         
       }else{
         console.log("user data is present==");

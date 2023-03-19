@@ -70,4 +70,17 @@ export class HomeComponent implements OnInit {
     this.visible = !this.visible
   }
 
+
+  goBack(){
+    console.log("backbutton work");
+    this.router.navigateByUrl("/login")
+  }
+
+  logout(){
+    console.log("log out user, remove local storage");
+    localStorage.clear()
+    this.router.navigateByUrl("/login")
+    
+  }
+
 }
