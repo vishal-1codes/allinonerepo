@@ -64,6 +64,10 @@ export class LoginComponent implements OnInit {
 
       if(this.storeLoginTokenT!=undefined){
         console.log("token is present----");
+
+        //save token in localStorage
+        localStorage.setItem("localSession", JSON.stringify(this.storeLoginTokenT))
+
         const data2={
           authentication:this.storeLoginTokenT
         }
