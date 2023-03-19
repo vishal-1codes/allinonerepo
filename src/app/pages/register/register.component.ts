@@ -18,9 +18,7 @@ export class RegisterComponent implements OnInit {
   //18 lets go to login page
   newUserInfo:any;
 
-  localStoragePorN:any;
-  checkTokenData:any;
-  checkTokenDataPorN:any;
+ 
 
   empArr = [
     { id: 1, role: "HR" },
@@ -34,7 +32,7 @@ export class RegisterComponent implements OnInit {
   });
 
   constructor(private globalservice:GlobalService,private router:Router) {
-    this.checkLocalStorage();
+    
   }
 
   ngOnInit(): void {
@@ -77,72 +75,7 @@ export class RegisterComponent implements OnInit {
       this.newUserInfo=res
       console.log("register new user info",this.newUserInfo);
       this.router.navigateByUrl('/login',{state:{newuser:this.newUserInfo}})
-      // this.getRegisterToken=res;
-      // console.log("register token inside getRegisterToken",this.getRegisterToken.token,typeof(this.getRegisterToken.token));
-
-      // if(this.getRegisterToken!=undefined){
-      //   const data2={
-      //     "authentication":this.getRegisterToken.token
-      //   }
-      //   console.log("get data2",data2);
-        
-      //   this.globalservice.checkToken(data2).subscribe(res=>{
-      //     // console.log("get token res",res);
-      //     this.getUserInfo=res
-      //     console.log("get user info in",this.getUserInfo);
-      //     this.router.navigateByUrl('/home',{state:{token:this.getUserInfo}})
-      //   })
-      // }else{
-      //   console.log("token not genrated");
-        
-      // }
-     
     })
-  }
-
-
-  checkLocalStorage(){
-    console.log("checking local storage");
-    this.localStoragePorN=localStorage.getItem("localSession")
-
-    if(this.localStoragePorN != undefined){
-      console.log("local storage present",this.localStoragePorN);
-      this.checkTokenPorN()
-    }else{
-      console.log("local storage not present");
-    }
-  }
-
-  checkTokenPorN(){
-    console.log("check token data is present or not");
-    let abc=this.localStoragePorN.replaceAll("^\"|\"$", "")
-    console.log("get");
-    
-    const datah2={
-      authentication:this.localStoragePorN
-    }
-    console.log("check register datah2",datah2);
-    
-    this.globalservice.checkToken(datah2).subscribe(res=>{
-      console.log("get token response",res);
-      this.checkTokenData=res
-      console.log("check checkTokenData",this.checkTokenData);
-
-      if(this.checkTokenData.result=="Invalid Token, Token expire"){
-        alert("Invalid Token, Token expire 123")
-      }else{
-        console.log("user data is present");
-        this.checkTokenDataPorN=this.checkTokenData.authdata.var2[0]
-        console.log("check token data",this.checkTokenDataPorN);
-        
-      }
-
-      
-      
-    })
-
-
-
   }
 
 

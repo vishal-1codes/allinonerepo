@@ -12,6 +12,8 @@ export class HomeComponent implements OnInit {
   registerToken:any;
   registerTokenInfo:any="User Not Found";
 
+  registerTokenInfoTwo:any;
+
   sessionUser:any;
 
   visible:boolean = false
@@ -20,35 +22,46 @@ export class HomeComponent implements OnInit {
     this.getActivatedTokenUser()
   }
 
-  ngOnInit(): void {
+  ngOnInit(): void {  
   }
 
+
+
   getActivatedTokenUser(){
-    this.registerToken=this.location.getState()
-    console.log("type of--",this.registerToken,typeof(this.registerToken));
-    if(this.registerToken.tokenuserdata!=undefined){
-      this.registerTokenInfo=this.registerToken.tokenuserdata.email
-      console.log("get activate token--",this.registerToken,this.registerTokenInfo);
+    // this.registerToken=this.location.getState()
+    // console.log("type of--",this.registerToken,typeof(this.registerToken));
+    // if(this.registerToken.tokenuserdata!=undefined){
+    //   this.registerTokenInfo=this.registerToken.tokenuserdata.email
+    //   console.log("get activate token--",this.registerToken,this.registerTokenInfo);
+    //   this.sessionUser=this.registerToken.tokenuserdata
+    // }else{
+    //   // alert("Not get user--")
+    //   console.log("Not get user--");
+      
+    // }
 
-      // setTimeout(()=>{
-      //   window.location.reload()
-      //   alert("Seession is over login again :-)")
-      //   localStorage.clear();
-      // },300000)
-      this.sessionUser=this.registerToken.tokenuserdata
-      // console.log("session user",this.sessionUser);
-      //https://www.youtube.com/watch?v=TOpBvAOvU2A
-      //localStorage.removeItem('currentGame');
-      //localStorage.clear();
-
-      // localStorage.setItem("session",JSON.stringify(this.sessionUser))
-      // localStorage.getItem("session")
-      // this.session =JSON.parse(data);
-
-    }else{
-      alert("Not get user--")
-    }
+    this.registerToken= localStorage.getItem("localSession")
+    console.log("get local --",this.registerToken);
     
+    if(this.registerToken !=undefined){
+      console.log("if works");
+      const abc=this.registerToken.replace (/(^")|("$)/g, '')
+
+      const data1={
+        authentication:abc
+      }
+
+      this.globalservice.checkToken(data1).subscribe(res=>{
+        this.registerTokenInfoTwo=res
+        console.log("get local data",this.registerTokenInfoTwo);
+        this.registerTokenInfo=this.registerTokenInfoTwo.authdata.var2[0].email
+        console.log("get local storage data",this.registerTokenInfo);
+        
+      })
+      
+    }else{
+      console.log("else works");
+    }
     
   }
 

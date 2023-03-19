@@ -68,6 +68,8 @@ export class LoginComponent implements OnInit {
         //save token in localStorage
         localStorage.setItem("localSession", JSON.stringify(this.storeLoginTokenT))
 
+        this.clearLocalStorage()
+
         const data2={
           authentication:this.storeLoginTokenT
         }
@@ -79,6 +81,7 @@ export class LoginComponent implements OnInit {
           if(this.getTokenUserData !=undefined){
             console.log("get getTokenUserData----",this.getTokenUserData);
             this.router.navigateByUrl('/home',{state:{tokenuserdata:this.getTokenUserData}})
+            
           }else{
             console.log("token not have any user data, user is new");
             alert("Email Or Password incorrect, Register Now")
@@ -92,6 +95,17 @@ export class LoginComponent implements OnInit {
       }
       
     })
+  }
+
+
+
+  clearLocalStorage(){
+    console.log("call local storage in login component for window reload after 5 min");
+    setTimeout(()=>{
+    window.location.reload()
+    alert("Seession is over login again :-)")
+    localStorage.clear();
+    },300000)
   }
 
 }
