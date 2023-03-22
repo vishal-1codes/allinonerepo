@@ -1,0 +1,29 @@
+<div>
+    <div class="navbtns">
+        <button (click)="navigateBack()" class="btnbau">back</button>
+        <button (click)="addUsers()" class="btnbau">Add User</button>
+    </div>
+    <div>
+        <table class="table table-dark">
+            <thead>
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Number</th>
+                <th scope="col">Sport</th>
+                <th scope="col">Operation</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let cu of allcruduser">
+                <td>{{cu.name}}</td>
+                <td>{{cu.number}}</td>
+                <td>{{cu.sport}}</td>
+                <td>
+                    <button class="opbtn" id="ebtn" (click)="edit(cu._id)">Edit</button>
+                    <button class="opbtn" id="dbtn" (click)="delete(cu._id)">Delete</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+</div>

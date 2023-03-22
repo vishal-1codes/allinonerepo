@@ -105,6 +105,7 @@ export class LoginComponent implements OnInit {
     window.location.reload()
     alert("Seession is over login again :-)")
     localStorage.clear();
+    this.router.navigateByUrl("/login")
     },300000)
   }
 

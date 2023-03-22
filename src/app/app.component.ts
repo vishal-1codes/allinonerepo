@@ -38,7 +38,7 @@ export class AppComponent implements OnInit{
       this.checkTokenPorN()
     }else{
       console.log("local storage not present==");
-      this.router.navigateByUrl("/login")
+      // this.router.navigateByUrl("/login")
     }
   }
 

@@ -5,25 +5,25 @@
     </div>
 
         <div class="parent">
-            <form [formGroup]="crudForm" (ngSubmit)="onSubmit()">
+            <form #templateDrivenForm="ngForm" (ngSubmit)="handleFormSubmit(templateDrivenForm)">
         
                 <div class="formtitle">
-                    <h4>Add New User</h4>
+                    <h4>Edit User</h4>
                 </div>
         
                 <div>
                     <label for="namev" class="flable">Name</label>
-                    <input type="text"  formControlName="namev">
+                    <input type="text" name="namev" [(ngModel)]="userName">
                 </div>
         
                <div>
                 <label for="numberv" class="flable">Number</label>
-                <input type="text" formControlName="numberv" maxlength="10">
+                <input type="text" maxlength="10" name="numberv" [(ngModel)]="userNumber">
                </div>
         
                <div>
                 <label for="sportv" class="flable">Sport</label>
-                <select class="selected"   formControlName="sportv">
+                <select class="selected" name="sportv"  [(ngModel)]="userSport">
                     <option  disabled>Select Sport</option>
                     <option *ngFor="let s of sportArr" [ngValue]="s.game">{{s.game}}</option>
                 </select>
@@ -31,7 +31,7 @@
                </div>
         
                 <div class="subbtn">
-                    <button type="submit" class="subbtnc" [disabled]="!crudForm.valid">SUBMIT</button>
+                    <button type="submit" class="subbtnc" >SUBMIT</button>
                 </div>
         
             </form>

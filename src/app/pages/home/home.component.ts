@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit {
 
   sessionUser:any;
 
-  visible:boolean = false
+  
 
   constructor(private globalservice:GlobalService,private router:Router ,private location:Location) {
     this.getActivatedTokenUser()
@@ -66,9 +66,7 @@ export class HomeComponent implements OnInit {
   }
 
 
-  showAddUsers(){
-    this.visible = !this.visible
-  }
+  
 
 
   goBack(){
@@ -81,6 +79,12 @@ export class HomeComponent implements OnInit {
     localStorage.clear()
     this.router.navigateByUrl("/login")
     
+  }
+
+
+  goToList(){
+    console.log("get active user");
+    this.router.navigateByUrl("/listusers")
   }
 
 }

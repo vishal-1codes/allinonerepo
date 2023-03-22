@@ -10,6 +10,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './pages/home/home.component';
 import { AddusersComponent } from './pages/addusers/addusers.component';
+import { ListusersComponent } from './pages/listusers/listusers.component';
+import { EditusersComponent } from './pages/editusers/editusers.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import { AddusersComponent } from './pages/addusers/addusers.component';
     RegisterComponent,
     LoginComponent,
     HomeComponent,
-    AddusersComponent
+    AddusersComponent,
+    ListusersComponent,
+    EditusersComponent
   ],
   imports: [
     BrowserModule,

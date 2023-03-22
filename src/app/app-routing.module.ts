@@ -4,13 +4,20 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
 import { AddusersComponent } from './pages/addusers/addusers.component';
+import { EditusersComponent } from './pages/editusers/editusers.component';
+import { ListusersComponent } from './pages/listusers/listusers.component';
 
 const routes: Routes = [
-  {path:'',component:RegisterComponent},
+  {path:'home2',component:RegisterComponent},
   {path:'home',component:HomeComponent},
   {path:'register',component:RegisterComponent},
   {path:'login',component:LoginComponent},
-  {path:'addusers',component:AddusersComponent},
+  {path:'',component:AddusersComponent},
+
+  {path:'edituser',component:EditusersComponent},
+  {path:'listusers',component:ListusersComponent},
+ 
+
 ];
 
 @NgModule({
