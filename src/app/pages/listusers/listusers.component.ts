@@ -24,7 +24,7 @@ export class ListusersComponent implements OnInit {
   }
 
   addUsers(){
-    this.router.navigateByUrl("/")
+    this.router.navigateByUrl("/adduser")
   }
 
   getCrudUsers(){

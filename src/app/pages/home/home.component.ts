@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { GlobalService } from 'src/app/service/global.service';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { AuthcaService } from 'src/app/service/authca.service';
+import { CrudService } from 'src/app/service/crud.service';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -16,9 +19,12 @@ export class HomeComponent implements OnInit {
 
   sessionUser:any;
 
+  checkHrOrNot:any;
+
   
 
-  constructor(private globalservice:GlobalService,private router:Router ,private location:Location) {
+  constructor(private globalservice:GlobalService,private router:Router ,private location:Location,private authcas:AuthcaService,
+    private crudservice:CrudService) {
     this.getActivatedTokenUser()
   }
 
@@ -54,6 +60,11 @@ export class HomeComponent implements OnInit {
       this.globalservice.checkToken(data1).subscribe(res=>{
         this.registerTokenInfoTwo=res
         console.log("get local data",this.registerTokenInfoTwo);
+        this.checkHrOrNot=this.registerTokenInfoTwo.authdata.var2[0].status
+        console.log("check hr or not",this.checkHrOrNot);
+       
+
+        
         this.registerTokenInfo=this.registerTokenInfoTwo.authdata.var2[0].email
         console.log("get local storage data",this.registerTokenInfo);
         
@@ -77,14 +88,27 @@ export class HomeComponent implements OnInit {
   logout(){
     console.log("log out user, remove local storage");
     localStorage.clear()
+    this.authcas.logout()
     this.router.navigateByUrl("/login")
+
     
   }
 
 
   goToList(){
     console.log("get active user");
-    this.router.navigateByUrl("/listusers")
+
+    if(this.checkHrOrNot=="1"){
+      console.log("it is HR do crud");
+      this.crudservice.itHr()
+      this.router.navigateByUrl("/listusers")
+    }else{
+      console.log("it is Software developer not access to crud");
+      this.crudservice.itNotHr()
+      alert("Only Hr have crud access")
+    }
+
+    
   }
 
 }

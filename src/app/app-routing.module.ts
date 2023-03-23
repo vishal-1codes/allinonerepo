@@ -6,16 +6,18 @@ import { HomeComponent } from './pages/home/home.component';
 import { AddusersComponent } from './pages/addusers/addusers.component';
 import { EditusersComponent } from './pages/editusers/editusers.component';
 import { ListusersComponent } from './pages/listusers/listusers.component';
+import { AuthcaGuard } from './service/authca.guard';
+import { CrudGuard } from './service/crud.guard';
 
 const routes: Routes = [
-  {path:'home2',component:RegisterComponent},
-  {path:'home',component:HomeComponent},
+  {path:'',component:LoginComponent},
+  {path:'home',component:HomeComponent,canActivate:[AuthcaGuard]},
   {path:'register',component:RegisterComponent},
   {path:'login',component:LoginComponent},
-  {path:'',component:AddusersComponent},
+  {path:'adduser',component:AddusersComponent},
 
   {path:'edituser',component:EditusersComponent},
-  {path:'listusers',component:ListusersComponent},
+  {path:'listusers',component:ListusersComponent,canActivate:[CrudGuard]},
  
 
 ];

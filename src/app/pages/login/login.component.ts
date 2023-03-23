@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { GlobalService } from 'src/app/service/global.service';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { AuthcaService } from 'src/app/service/authca.service';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +22,7 @@ export class LoginComponent implements OnInit {
   getTokenUserData:any
 
 
-  constructor(private globalservice:GlobalService,private router:Router ,private location:Location) { }
+  constructor(private globalservice:GlobalService,private router:Router ,private location:Location,private authcas:AuthcaService) { }
 
   ngOnInit(): void {
     this.getNewUserInfo()
@@ -80,12 +81,17 @@ export class LoginComponent implements OnInit {
 
           if(this.getTokenUserData !=undefined){
             console.log("get getTokenUserData----",this.getTokenUserData);
+
+            this.authcas.login()
+
             this.router.navigateByUrl('/home',{state:{tokenuserdata:this.getTokenUserData}})
             
           }else{
             console.log("token not have any user data, user is new");
             alert("Email Or Password incorrect, Register Now")
-            
+
+            this.authcas.logout()
+
           }
          
         })
@@ -107,6 +113,13 @@ export class LoginComponent implements OnInit {
     localStorage.clear();
     this.router.navigateByUrl("/login")
     },300000)
+  }
+
+  goRegister(){
+    //when user is login but she want to register new user then 1st remove local storage
+    localStorage.clear()
+    //then navigate to new user
+    this.router.navigateByUrl("/register")
   }
 
 }
