@@ -17,6 +17,7 @@ import { EditusersComponent } from './pages/editusers/editusers.component';
 import { AuthcaGuard } from './service/authca.guard';
 import { AuthcaService } from './service/authca.service';
 import { CrudService } from './service/crud.service';
+import { BtnborderDirective } from './directive/btnborder.directive';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { CrudService } from './service/crud.service';
     HomeComponent,
     AddusersComponent,
     ListusersComponent,
-    EditusersComponent
+    EditusersComponent,
+    BtnborderDirective
   ],
   imports: [
     BrowserModule,
