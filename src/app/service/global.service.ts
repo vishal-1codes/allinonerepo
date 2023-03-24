@@ -47,5 +47,9 @@ export class GlobalService {
     return this.httpclient.get(this.base_path+"crudget/"+id)
   }
 
+  getHRSD(){
+    return this.httpclient.get(this.base_path+"get")
+  }
+
 
 }

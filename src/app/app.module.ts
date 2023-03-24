@@ -18,6 +18,8 @@ import { AuthcaGuard } from './service/authca.guard';
 import { AuthcaService } from './service/authca.service';
 import { CrudService } from './service/crud.service';
 import { BtnborderDirective } from './directive/btnborder.directive';
+import { UserchartComponent } from './pages/userchart/userchart.component';
+
 
 @NgModule({
   declarations: [
@@ -28,7 +30,8 @@ import { BtnborderDirective } from './directive/btnborder.directive';
     AddusersComponent,
     ListusersComponent,
     EditusersComponent,
-    BtnborderDirective
+    BtnborderDirective,
+    UserchartComponent
   ],
   imports: [
     BrowserModule,

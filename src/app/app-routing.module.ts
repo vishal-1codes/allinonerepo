@@ -8,6 +8,7 @@ import { EditusersComponent } from './pages/editusers/editusers.component';
 import { ListusersComponent } from './pages/listusers/listusers.component';
 import { AuthcaGuard } from './service/authca.guard';
 import { CrudGuard } from './service/crud.guard';
+import { UserchartComponent } from './pages/userchart/userchart.component';
 
 const routes: Routes = [
   {path:'',component:LoginComponent},
@@ -18,6 +19,7 @@ const routes: Routes = [
 
   {path:'edituser',component:EditusersComponent},
   {path:'listusers',component:ListusersComponent,canActivate:[CrudGuard]},
+  {path:'userchart',component:UserchartComponent},
  
 
 ];
